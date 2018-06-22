@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { ErrorInterceptor } from '../../services/errorInterceptor.service';
 
 const CORE_MODULES = [
   CommonModule,
@@ -13,7 +15,14 @@ const CORE_MODULES = [
 @NgModule({
   imports: [CommonModule],
   exports: [...CORE_MODULES],
-  declarations: []
+  declarations: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

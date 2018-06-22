@@ -35,6 +35,7 @@ export function loginReducer(
 
     case LoginActionTypes.LOGIN_FAIL:
     case LoginActionTypes.LOGOUT: {
+      state = undefined;
       return {
         ...state,
         isLogged: false,

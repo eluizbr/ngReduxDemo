@@ -3,21 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     loadChildren: '../app/modules/layout/layout.module#LayoutModule'
   },
   {
     path: 'login',
     loadChildren: '../app/modules/login/login.module#LoginModule'
-  },
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: 'dashboard'
   }
 ];
 

@@ -7,6 +7,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { MainComponent } from './main/main.component';
 import { LayoutEffects } from './store/layout.effects';
 import * as fromLayout from './store/layout.reducer';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import * as fromLayout from './store/layout.reducer';
     StoreModule.forFeature('layout', fromLayout.layoutReducer),
     EffectsModule.forFeature([LayoutEffects])
   ],
-  declarations: [MainComponent]
+  declarations: [MainComponent, LayoutComponent]
 })
 export class LayoutModule {}
