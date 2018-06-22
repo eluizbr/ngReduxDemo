@@ -1,0 +1,26 @@
+<div class="container h-100">
+
+  <div class="col p-5 d-flex justify-content-center">
+
+    <div class="card">
+      <h5 class="card-header">Login</h5>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="doLogin(loginForm.value)" novalidate>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input formControlName="username" type="email" class="form-control" id="exampleInputEmail1" placeholder="Username">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <i *ngIf="(showSpinner$ | async)" class="fas fa-cog fa-spin"></i>
+            Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
