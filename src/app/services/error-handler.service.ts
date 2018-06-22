@@ -17,13 +17,27 @@ export class ErrorHandlerService {
 
   constructor(private router: Router) {}
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      notify(error.error);
-    } else {
-      notify(error.error);
+  handleError(error: HttpErrorResponse) {
+    switch (error.status) {
+      case 0:
+        const msg = {
+          title: 'Error',
+          icon: 'fa fa-wifi',
+          message: 'Erro de conexão com o servidor!'
+        };
+        notify(msg);
+        break;
+      case 500:
+        notify(error.error);
+        break;
+      case 401:
+        notify(error.error);
+        break;
+      default:
+        notify(error.error);
     }
-    return throwError('err');
+
+    return throwError(error.error);
   }
 }
 

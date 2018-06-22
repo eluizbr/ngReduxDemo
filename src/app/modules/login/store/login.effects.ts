@@ -26,7 +26,6 @@ export class LoginEffects {
   @Effect({ dispatch: false })
   Login$ = this.actions$.pipe(
     ofType<Login>(LoginActionTypes.LOGIN),
-    // mergeMap(action => this.loginService.doLogin(action.payload)),
     tap(action => {
       this.loginService
         .doLogin(action.payload)
@@ -40,7 +39,6 @@ export class LoginEffects {
               this.store.dispatch(new Go({ path: ['/dashboard'] }));
             },
             err => {
-              notify(err.error);
               this.store.dispatch(new LoginFail());
             }
           )
@@ -48,16 +46,4 @@ export class LoginEffects {
         .subscribe();
     })
   );
-}
-
-function notify(data: any): any {
-  return iziToast.show({
-    title: data.title || 'Error',
-    color: 'red',
-    icon: data.icon || 'fa fa-remove',
-    position: 'bottomCenter',
-    layout: 2,
-    balloon: true,
-    message: data.message || 'Generic error'
-  });
 }
