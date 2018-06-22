@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { mergeMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { ErrorHandlerService } from '../../../services/error-handler.service';
 import { AppState } from '../../../store';
@@ -26,20 +26,27 @@ export class LoginEffects {
   @Effect({ dispatch: false })
   Login$ = this.actions$.pipe(
     ofType<Login>(LoginActionTypes.LOGIN),
-    mergeMap(action => this.loginService.doLogin(action.payload)),
-    tap(
-      result => {
-        const { token, ...data } = result;
-        this.localStorage.setItemSubscribe('token', token);
-        this.localStorage.setItemSubscribe('data', result);
-        this.store.dispatch(new LoginSuccess({ token, ...data }));
-        this.store.dispatch(new Go({ path: ['/dashboard'] }));
-      },
-      err => {
-        notify(err.error);
-        this.store.dispatch(new LoginFail());
-      }
-    )
+    // mergeMap(action => this.loginService.doLogin(action.payload)),
+    tap(action => {
+      this.loginService
+        .doLogin(action.payload)
+        .pipe(
+          tap(
+            result => {
+              const { token, ...data } = result;
+              this.localStorage.setItemSubscribe('token', token);
+              this.localStorage.setItemSubscribe('data', result);
+              this.store.dispatch(new LoginSuccess({ token, ...data }));
+              this.store.dispatch(new Go({ path: ['/dashboard'] }));
+            },
+            err => {
+              notify(err.error);
+              this.store.dispatch(new LoginFail());
+            }
+          )
+        )
+        .subscribe();
+    })
   );
 }
 
