@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import { defer } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 
 import { AppState } from '../../../store';
@@ -27,14 +26,4 @@ export class UsersEffects {
       this.store.dispatch(new LoadUsersSuccess(users));
     })
   );
-
-  @Effect()
-  init$ = defer(() => {
-    this.localStorage.getItem('users').subscribe(users => {
-      console.log(users);
-      if (users) {
-        this.store.dispatch(new LoadUsersSuccess(users));
-      }
-    });
-  });
 }

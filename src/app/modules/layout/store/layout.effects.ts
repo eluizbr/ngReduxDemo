@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { AppState } from '../../../store';
 import { Go } from '../../../store/app.action';
 import { LoginActionTypes, Logout } from '../../login/store/login.actions';
+import { ClearUsers } from '../../users/store/users.actions';
 
 @Injectable()
 export class LayoutEffects {
@@ -21,6 +22,7 @@ export class LayoutEffects {
     ofType<Logout>(LoginActionTypes.LOGOUT),
     tap(() => {
       this.localStorage.clearSubscribe();
+      this.store.dispatch(new ClearUsers());
       this.store.dispatch(new Go({ path: ['/login'] }));
     })
   );

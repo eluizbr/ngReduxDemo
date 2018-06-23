@@ -24,6 +24,10 @@ export function userReducer(
       return userAdpter.addMany(action.payload, state);
     }
 
+    case UsersActionTypes.CLEAR_USERS: {
+      return userAdpter.removeAll(state);
+    }
+
     default: {
       return state;
     }
