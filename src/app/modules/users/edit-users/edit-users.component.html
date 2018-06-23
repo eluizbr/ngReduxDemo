@@ -1,0 +1,21 @@
+<div class="container p-5">
+
+
+
+
+  <div class="card text-center">
+    <h5 class="card-header">{{ (user$ |async )?.name }}</h5>
+
+    <div class="card-body">
+      <h5 class="card-title">{{ (user$ |async )?.username }}</h5>
+      <p class="card-text">{{ (user$ |async )?.email }}</p>
+      <a href="#" class="btn btn-primary">{{ (user$ |async )?.phone }}</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{ (user$ |async )?.address.street }} / {{ (user$ |async )?.address.suite }} - {{ (user$ |async )?.address.city }}
+
+      <button (click)="back()" type="button" class="btn btn-success btn-sm float-right">Back</button>
+    </div>
+  </div>
+
+</div>

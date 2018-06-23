@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from '../../../store';
+import { Go } from '../../../store/app.action';
 import { IUser } from '../models/user.model';
 import { selectAllusers } from '../store/users.selectors';
 
@@ -18,5 +19,9 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit() {
     this.users$ = this.store.pipe(select(selectAllusers));
+  }
+
+  userDetails(userId: string) {
+    this.store.dispatch(new Go({ path: ['/users', userId, 'edit'] }));
   }
 }

@@ -10,6 +10,7 @@ import { UsersEffects } from './store/users.effects';
 import { userReducer } from './store/users.reducer';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users/users.component';
+import { EditUsersComponent } from './edit-users/edit-users.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { UsersComponent } from './users/users.component';
     StoreModule.forFeature('users', userReducer),
     EffectsModule.forFeature([UsersEffects])
   ],
-  declarations: [UsersComponent, ListUsersComponent],
+  declarations: [UsersComponent, ListUsersComponent, EditUsersComponent],
   providers: [UsersService]
 })
 export class UsersModule {}

@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ErrorInterceptor } from '../../services/errorInterceptor.service';
 
-const CORE_MODULES = [ReactiveFormsModule, HttpClientModule];
+const CORE_MODULES = [ReactiveFormsModule, HttpClientModule, CommonModule];
 @NgModule({
   imports: [CommonModule],
   exports: [...CORE_MODULES],
