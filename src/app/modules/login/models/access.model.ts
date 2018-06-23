@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IAccess {
   token?: string;
   isActive?: boolean;
   email?: string;

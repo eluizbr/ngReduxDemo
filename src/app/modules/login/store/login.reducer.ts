@@ -1,7 +1,7 @@
-import { IUser } from '../models/user.model';
+import { IAccess } from '../models/access.model';
 import { LoginActions, LoginActionTypes } from './login.actions';
 
-export interface LoginState extends IUser {
+export interface LoginState extends IAccess {
   isLogged: boolean;
   showSpinner: boolean;
 }

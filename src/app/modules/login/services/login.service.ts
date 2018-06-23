@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
+import { IAccess } from '../models/access.model';
 import { ILogin } from '../models/login.model';
-import { IUser } from '../models/user.model';
 
 declare var iziToast: any;
 
@@ -12,7 +12,7 @@ declare var iziToast: any;
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  doLogin(payload: ILogin): Observable<IUser> {
-    return this.http.post<IUser>(`${environment.url}/login`, payload);
+  doLogin(payload: ILogin): Observable<IAccess> {
+    return this.http.post<IAccess>(`${environment.url}/login`, payload);
   }
 }

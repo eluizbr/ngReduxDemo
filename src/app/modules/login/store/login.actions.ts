@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
+import { IAccess } from '../models/access.model';
 import { ILogin } from '../models/login.model';
-import { IUser } from '../models/user.model';
 
 export enum LoginActionTypes {
   LOGIN = '[Access] Login user',
@@ -17,7 +17,7 @@ export class Login implements Action {
 
 export class LoginSuccess implements Action {
   readonly type = LoginActionTypes.LOGIN_SUCCESS;
-  constructor(public payload: IUser) {}
+  constructor(public payload: IAccess) {}
 }
 
 export class LoginFail implements Action {
