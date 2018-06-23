@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ListUsersComponent } from './list-users/list-users.component';
+import { UsersResolver } from './services/users-resolver.service';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: ListUsersComponent
+        component: ListUsersComponent,
+        resolve: [UsersResolver]
       }
     ]
   }

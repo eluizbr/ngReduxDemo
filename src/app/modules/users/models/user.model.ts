@@ -3,6 +3,7 @@ import { ICompany } from './company.model';
 
 export interface IUser {
   id: string;
+  username: string;
   name: string;
   email: string;
   address: IAddress;

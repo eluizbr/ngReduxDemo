@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { AppState } from '../../../store';
+import { IUser } from '../models/user.model';
+import { selectAllusers } from '../store/users.selectors';
 
 @Component({
   selector: 'app-list-users',
@@ -6,10 +12,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-users.component.css']
 })
 export class ListUsersComponent implements OnInit {
+  users$: Observable<IUser[]>;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.users$ = this.store.pipe(select(selectAllusers));
   }
-
 }
